@@ -10,18 +10,26 @@ class Currency:
     def __init__(self, name, code, symbol=None, digits=2):
         """
         Parameters:
-        - name -- the English name of the currency
-        - code -- the ISO 4217 three-letter code for the currency
-        - symbol - optional symbol used to designate currency
-        - digits -- number of significant digits used
+        - name -- the English name of the currency  #United States dollar
+        - code -- the ISO 4217 three-letter code for the currency # USD
+        - symbol - optional symbol used to designate currency # $
+        - digits -- number of significant digits used # if statement to check for 2 or 3 digits
         """
-        pass
+  
+        self.name = name
+        self.code = code
+        self.symbol = symbol
+        self.digits = digits
+
+
 
     def __str__(self):
         """
         Should return the currency code, or code with symbol in parentheses.
         """
-        pass
+        if not self.symbol:
+            return self.code
+
 
     def __eq__(self, other):
         """
