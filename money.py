@@ -60,8 +60,9 @@ class Money:
         Should use the currency symbol if available, else use the code.
         Use the currency digits to determine number of digits to show.
         """
-        return "Money(symbol='self.symbol+', code='self.code+', digits='self.digits')"
-        # note - it passed the test, but I'm trying to create a string, and I have no way to check this particular code outside the one test we have. I feel like it needs to import info to actually run as written and then I can see if it was successful. Would I be better off with an if statement? How would I check for number of digits?
+        return f"{self.amount}{self.currency}"
+
+    #     figure out how to put two classes together
 
     def __repr__(self):
         return f"<Money {str(self)}>"
@@ -79,11 +80,10 @@ class Money:
         currencies, raise a DifferentCurrencyError.
         """
         if self.currency == other.currency:
-            return self.amount + other.amount
-        else: 
             raise DifferentCurrencyError #I literally copied this from line 79, and assumed they were built in functions. Not sure on research done what exactly this is called using programmer verbiage, I simply understand that if the "if" statement is not met, than the error needs to be raised, stopping the program
-
-            #got errors, stopped here
+        return Money(self.amount + other.amount, self.currency)
+            #got errors, stopped here 
+            # small x-5 error, not sure why
 
 
     def sub(self, other):
@@ -91,7 +91,9 @@ class Money:
         Subtract two money objects of the same currency. If they have different
         currencies, raise a DifferentCurrencyError.
         """
-        pass
+        if self.currency == other.currency:
+            raise DifferentCurrencyError
+        return Money(self.amount - other.amount, self.currency)
 
     def mul(self, multiplier):
         """
